@@ -1,4 +1,4 @@
-﻿# WebbG Overlay View with Threejs
+﻿# WebGL Overlay View with Threejs
 
 ## Usage
 

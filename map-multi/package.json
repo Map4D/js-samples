@@ -1,0 +1,47 @@
+{
+  "name": "map-multi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "type": "module",
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build --build"
+  },
+  "keywords": [
+    "map4d",
+    "javascript",
+    "maps",
+    "samples"
+  ],
+  "license": "Apache-2.0",
+  "browserslist": "> 0.25%, not dead",
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "browser-sync": "^2.29.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-delete-file": "^1.0.2",
+    "gulp-ext-replace": "^0.3.0",
+    "gulp-file-include": "^2.3.0",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-if": "^3.0.0",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-svg-symbols": "^3.2.3",
+    "gulp-svgmin": "^4.1.0",
+    "imagemin-webp": "^8.0.0",
+    "sass": "^1.59.3",
+    "webpack": "^5.76.2",
+    "webpack-stream": "^7.0.0"
+  }
+}

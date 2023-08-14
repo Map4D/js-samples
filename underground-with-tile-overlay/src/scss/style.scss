@@ -1,0 +1,37 @@
+#map {
+    height: 100%;
+}
+
+html,
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#control {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    width: 200px;
+    margin: 5px;
+}
+
+.github-corner {
+    border-bottom: 0;
+    position: fixed;
+    right: 0;
+    text-decoration: none;
+    top: 0;
+    z-index: 1;
+}
+
+.github-corner svg {
+    color: #fff;
+    fill: #42b983;
+    fill: var(--theme-color,#42b983);
+    height: 80px;
+    width: 80px;
+}
+

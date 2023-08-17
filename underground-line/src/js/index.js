@@ -1,28 +1,26 @@
-var timeEffect
 var map
-
-var tileOverlay
 var lineUnderGround
 var lineOnGround
 
-/** slider */
-const slider = document.getElementById("slider");
-slider.oninput = function() {
-  const opacity = this.value / 100
-  const easeOpacity = 1 - Math.pow(1 - opacity, 5)
-
-  map && updateTimeEffect(this.value)
-  map && map.setBuildingsOpacity(1 - opacity)
-  tileOverlay && tileOverlay.setOpacity(opacity)
-  lineUnderGround && lineUnderGround.setStrokeOpacity(easeOpacity)
-  objectUnderGround && objectUnderGround.setOpacity(easeOpacity)
+document.setMapType = (type) => {
+  map && map.setMapType(type)
 }
 
-/** checkbox */
-const checkbox = document.getElementById("buildings-checkbox")
-checkbox.addEventListener('change', function() {
-  map && map.setBuildingsEnabled(this.checked)
-});
+document.getElementById("tile-opacity-slider").oninput = function() {
+  map && map.setBaseMapLayerOpacity(this.value / 100)
+}
+
+document.getElementById("buildings-opacity-slider").oninput = function() {
+  map && map.setBuildingsOpacity(this.value / 100)
+}
+
+document.getElementById("buildings-checkbox").addEventListener('change', (e) => {
+  map && map.setBuildingsEnabled(e.target.checked)
+})
+
+document.getElementById("pois-checkbox").addEventListener('change', (e) => {
+  map && map.setPOIsEnabled(e.target.checked)
+})
 
 /** init */
 window.initMap = (e) => {
@@ -35,18 +33,6 @@ window.initMap = (e) => {
     mapType: "map3d",
     enabledNegativeElevation: true
   })
-
-  /** tile overlay */
-  const href = window.location.href
-  const baseUrl = href.substring(0, href.lastIndexOf("/"))
-  const groundImage = `${baseUrl}/images/g1.jpg`
-  tileOverlay = new map4d.TileOverlay({
-    getUrl: (x, y, z, _3dMode) => {
-      return groundImage
-    },
-    opacity: 0,
-  })
-  tileOverlay.setMap(map)
 
   /** polyline */
   const linePath = [
@@ -71,7 +57,6 @@ window.initMap = (e) => {
   lineUnderGround = new map4d.Polyline({
     path: linePath,
     strokeColor: "red",
-    strokeOpacity: 0,
     strokeWidth: 20,
     elevation: -20,
     zIndex: -1
@@ -80,8 +65,7 @@ window.initMap = (e) => {
 
   lineOnGround = new map4d.Polyline({
     path: linePath,
-    strokeColor: "#fff",
-    strokeOpacity: 1,
+    strokeColor: "black",
     strokeWidth: 10,
     strokePattern: new map4d.DashPattern({ length: 20, gap: 20 }),
     zIndex: 0,
@@ -89,10 +73,3 @@ window.initMap = (e) => {
   lineOnGround.setMap(map)
 }
 
-function updateTimeEffect(opacity) {
-  const newTimeEffect = opacity > 0 ? map4d.TimeEffect.Evening : map4d.TimeEffect.None
-  if (timeEffect != newTimeEffect) {
-    timeEffect = newTimeEffect
-    map.setTimeEffect(timeEffect)
-  }
-}
